@@ -2,6 +2,12 @@
 # _*_ coding: utf-8 _*_
 
 
+"""
+Euler forum:
+(1+2+3...+n)^2 = n^2*(n+1)^2*1/4
+(1^2+2^2+...+n^2) = n * (n+1) * (2n + 1) * 1 / 6
+"""
+
 def sum_square_difference(num):
     square_of_sum = sum(range(1, num+1))**2
     sum_of_square = sum([i*i for i in range(1, num+1)])
