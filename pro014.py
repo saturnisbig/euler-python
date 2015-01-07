@@ -14,8 +14,30 @@ that all starting numbers finish at 1.
 Which starting number, under one million, produces the longest chain?
 NOTE: Once the chain starts the terms are allowed to go above one million.
 
-Costs: 2015-01-07 19:45:06 -
+Costs: 2015-01-07 19:45:06 - 2015-01-07 20:22:39
 """
+
+result = {}
+
+def collatz_sequence_cached(n):
+    a = n
+    if n in result:
+        return result[n]
+    else:
+        counter = 1
+        while True:
+            if n == 1:
+                break
+            if n % 2 == 0:
+                n = n / 2
+            else:
+                n = 3 * n + 1
+            if n in result:
+                counter += result[n]
+                break
+            counter += 1
+        result[a] = counter
+    return counter
 
 
 def collatz_sequence(n):
@@ -34,7 +56,8 @@ def collatz_sequence(n):
 def largest_sequence_under(n):
     largest_seq = (1, 1)
     for i in range(1, n+1):
-        tmp = collatz_sequence(i)
+        # cached version costs 2 secs, while the other costs 25 secs.
+        tmp = collatz_sequence_cached(i)
         if tmp > largest_seq[0]:
             largest_seq = (tmp, i)
     return largest_seq
@@ -42,4 +65,8 @@ def largest_sequence_under(n):
 
 if __name__ == '__main__':
     #print largest_sequence_under(5)
-    print largest_sequence_under(1000000)
+    import time
+    start = time.time()
+    result = largest_sequence_under(1000000)
+    print 'Costs: ', time.time() - start, 'Result: ', result
+
