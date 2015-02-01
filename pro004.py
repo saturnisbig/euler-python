@@ -4,6 +4,12 @@
 
 
 def is_palindrome_num(n):
+    """
+    >>> is_palindrome_num(1221)
+    True
+    >>> is_palindrome_num(1234)
+    False
+    """
     if str(n) == str(n)[::-1]:
         return True
     else:

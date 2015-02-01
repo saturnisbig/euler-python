@@ -3,10 +3,24 @@
 
 
 def is_prime(num):
-    if num < 2:
+    """
+    >>> is_prime(2)
+    True
+    >>> is_prime(7)
+    True
+    >>> is_prime(8)
+    False
+    >>> is_prime(13)
+    True
+    >>> is_prime(15)
+    False
+    """
+    if num < 2: 
         return False
     if num == 2 or num == 3:
         return True
+    if num % 2 == 0:
+        return False
     # ignore even numbers
     for i in range(3, int(num**0.5+1), 2):
         if num % i == 0:
@@ -14,9 +28,19 @@ def is_prime(num):
     return True
 
 def factors(num):
+    """
+    >>> factors(2)
+    []
+    >>> factors(4)
+    [2, 2]
+    >>> factors(5)
+    []
+    >>> factors(8)
+    [2, 4]
+    """
     #result = [1, num]
     result = []
-    mid = num**0.5+1
+    mid = int(num**0.5+1)
     i = 2
     while i < mid:
         if num % i == 0:

@@ -15,6 +15,12 @@ four million, find the sum of the even-valued terms.
 
 
 def gen_fib(max_num):
+    """
+    >>> [v for v in gen_fib(5)]
+    [1, 2, 3]
+    >>> [v for v in gen_fib(13)]
+    [1, 2, 3, 5, 8]
+    """
     a, b = 1, 1
     while b < max_num:
         yield b
